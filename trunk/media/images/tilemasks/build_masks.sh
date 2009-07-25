@@ -14,7 +14,7 @@ for i in 1000-*.png; do
     EXT="${i##1000-}"
 
     # single spot
-    convert $IMAGICKFLAGS -negate     "$i" "${BUILDDIR}/1000-${EXT}"
+    convert $IMAGICKFLAGS             "$i" "${BUILDDIR}/1000-${EXT}"
     convert $IMAGICKFLAGS -flop       "$i" "${BUILDDIR}/0100-${EXT}"
     convert $IMAGICKFLAGS -flip       "$i" "${BUILDDIR}/0001-${EXT}"
     convert $IMAGICKFLAGS -flip -flop "$i" "${BUILDDIR}/0010-${EXT}"
@@ -38,10 +38,10 @@ done
 for i in 1100-*.png; do
     echo $i
     EXT="${i##1100-}"
-    convert $IMAGICKFLAGS             "$i" "${BUILDDIR}/1010-${EXT}"
+    convert $IMAGICKFLAGS             "$i" "${BUILDDIR}/1100-${EXT}"
     convert $IMAGICKFLAGS -flip       "$i" "${BUILDDIR}/0011-${EXT}"
-    convert $IMAGICKFLAGS -transpose  "$i" "${BUILDDIR}/1010-${EXT}"
-    convert $IMAGICKFLAGS -transverse "$i" "${BUILDDIR}/0101-${EXT}"
+    convert $IMAGICKFLAGS -transpose  "$i" "${BUILDDIR}/1001-${EXT}"
+    convert $IMAGICKFLAGS -transverse "$i" "${BUILDDIR}/0110-${EXT}"
 done
 
 # EOF #
