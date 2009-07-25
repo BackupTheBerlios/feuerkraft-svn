@@ -4,7 +4,7 @@ BUILDDIR="masks"
 
 mkdir -p "${BUILDDIR}"
 
-IMAGICKFLAGS="-type Grayscale"
+IMAGICKFLAGS="-type Grayscale -depth 8"
 
 # flop == "horizontal flip"
 
