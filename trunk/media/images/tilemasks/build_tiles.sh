@@ -21,6 +21,7 @@ for i in masks/*.png; do
     ./apply_alpha.py darksand.png   "$i" "tiles/$(echo "$NAME" | tr [10] [w_])-${NUM}.png"
     ./apply_alpha.py water.png      "$i" "tiles/$(echo "$NAME" | tr [10] [f_])-${NUM}.png"
     ./apply_alpha.py darkwater.png  "$i" "tiles/$(echo "$NAME" | tr [10] [d_])-${NUM}.png"
+    ./apply_alpha.py asphalt.png    "$i" "tiles/$(echo "$NAME" | tr [10] [a_])-${NUM}.png"
 done
 
 # EOF #
