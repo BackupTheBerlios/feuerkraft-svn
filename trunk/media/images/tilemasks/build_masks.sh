@@ -2,33 +2,44 @@
 
 BUILDDIR="masks"
 
+mkdir -p "${BUILDDIR}"
+
 # flop == "horizontal flip"
 
-for i in bbwb*.png; do
-    convert -negate "$i" "${BUILDDIR}/$i"
-#    convert -flop "$i" "${BUILDDIR}/bbbw${i##bbwb}"
-#    convert -flip "$i" "${BUILDDIR}/bwbb${i##bbwb}"
-#    convert -flip -flop "$i" "${BUILDDIR}/wbbb${i##bbwb}"
+# upper/left
+for i in 1000-*.png; do
+    echo $i
+    EXT="${i##1000-}"
+
+    # single spot
+    convert -negate "$i" "${BUILDDIR}/1000-${EXT}"
+    convert -flop "$i" "${BUILDDIR}/0100-${EXT}"
+    convert -flip "$i" "${BUILDDIR}/0001-${EXT}"
+    convert -flip -flop "$i" "${BUILDDIR}/0010-${EXT}"
+
+    # three spot
+    convert -negate "$i" "${BUILDDIR}/0111-${EXT}"
+    convert -negate -flop "$i" "${BUILDDIR}/1011-${EXT}"
+    convert -negate -flip "$i" "${BUILDDIR}/1110-${EXT}"
+    convert -negate -flip -flop "$i" "${BUILDDIR}/1101-${EXT}"
 done
 
-for i in bwbw*.png; do
-    convert -negate "$i" "${BUILDDIR}/$i"
-#    convert -flip "$i" "${BUILDDIR}/wbwb${i##bwbw}"
+# diagonal
+for i in 1010-*.png; do
+    echo $i
+    EXT="${i##1010-}"
+    convert         "$i" "${BUILDDIR}/1010-${EXT}"
+    convert -negate "$i" "${BUILDDIR}/0101-${EXT}"
 done
 
-for i in bbww*.png; do
-    convert -negate "$i" "${BUILDDIR}/$i"
-#    convert -flip "$i" "${BUILDDIR}/wwbb${i##bbww}"
-#    convert -transpose  "$i" "${BUILDDIR}/bwwb${i##bbww}"
-#    convert -transverse "$i" "${BUILDDIR}/wbbw${i##bbww}"
-done
-
-
-for i in bwww*.png; do
-    convert -negate "$i" "${BUILDDIR}/$i"
-#    convert -flip "$i" "${BUILDDIR}/wwwb${i##bwww}"
-#    convert -flop "$i" "${BUILDDIR}/wbww${i##bwww}"
-#    convert -transverse "$i" "${BUILDDIR}/wwbw${i##bwww}"
+# one side
+for i in 1100-*.png; do
+    echo $i
+    EXT="${i##1100-}"
+    convert             "$i" "${BUILDDIR}/1010-${EXT}"
+    convert -flip       "$i" "${BUILDDIR}/0011-${EXT}"
+    convert -transpose  "$i" "${BUILDDIR}/1010-${EXT}"
+    convert -transverse "$i" "${BUILDDIR}/0101-${EXT}"
 done
 
 # EOF #
